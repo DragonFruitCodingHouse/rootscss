@@ -1,0 +1,46 @@
+/**
+ * Grid
+ *
+ */
+
+$columns: (
+  "12": 12,
+  "14": 14,
+  "15": 15
+);
+
+.container {
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+  display: flex;
+
+  @each $name, $num in $columns {
+    .row-#{$name} {
+      flex-direction: row;
+      align-items: center;
+      align-content: center;
+
+      .col-auto {
+        width: auto;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-self: center;
+      }
+
+      @for $i from 1 through $num {
+        $width: $i * (100% / $num);
+        .col-#{$i} {
+          max-width: $width;
+          -webkit-flex: 0 0 $width;
+          -ms-flex: 0 0 $width;
+          flex: 0 0 $width;
+          flex-direction: column;
+          align-self: center;
+        }
+      }
+    }
+  }
+}
