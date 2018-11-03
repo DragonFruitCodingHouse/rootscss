@@ -1,0 +1,51 @@
+/*
+ * Breakpoint
+ *
+ */
+
+// Variables
+$breakpoints: (
+  "xs":  0px,
+  "sm":  600px,
+  "md":  900px,
+  "lg":  1200px,
+  "xl":  1800px,
+  "xxl": 2400px
+);
+
+// Mixins
+@function breakpoint-next($size) {
+  $currentIndex: index(map-keys($breakpoints), $size);
+  @return if($currentIndex < length($breakpoints), (nth(map-keys($breakpoints), $currentIndex + 1)), null);
+};
+
+@mixin media-breakpoint-up($size) {
+  @each $name, $min in $breakpoints {
+    @if $size==$name {
+      @media (min-width: $min) { @content; }
+    }
+  }
+}
+
+@mixin media-breakpoint-down($size) {
+  @each $name, $max in $breakpoints {
+    @if $size==$name {
+      @media (max-width: $max - 0.02px) { @content; }
+    }
+  }
+}
+
+@mixin media-breakpoint-only($size) {
+  @each $name, $min in $breakpoints {
+    @if $size==$name {
+      $max: breakpoint-next($name);
+      @if ($min != null and $max != null) {
+        @media (min-width: $min) and (max-width: map-get($breakpoints, $max)) { @content; }
+      } @else if ($max == null) {
+        @media (min-width: $min) { @content; }
+      } @else if ($min == null) {
+        @media (max-width: $max) { @content; }
+      }
+    }
+  }
+}

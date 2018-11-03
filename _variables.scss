@@ -1,0 +1,35 @@
+/**
+ * Variables
+ *
+ */
+
+// Colors
+$black: #000;
+$dark: #160700;
+$medium: desaturate(lighten($dark, 50), 95);
+$light: desaturate(lighten($dark, 95), 95);
+$white: #FFFFFF;
+$primary: #668A39;
+$secondary: #6B4230;
+$success: #86FF99; //might change this color later
+$warning: #FFCE86; //might change this color later
+$danger: #FF8686; //might change this color later
+
+$roots-colors: (
+  "black": $black,
+  "dark": $dark,
+  "medium": $medium,
+  "light": $light,
+  "white": $white,
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "warning": $warning,
+  "danger": $danger
+);
+
+$body-bg: $white;
+$body-color: $dark;
+
+$link-color: $primary;
+$link-hover-color: darken($link-color, 15%);
